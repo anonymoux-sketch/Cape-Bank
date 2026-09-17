@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CAPE BANK — Demo</title>
+  <style>
+    :root{--bg:#f4f7fb;--card:#fff;--ink:#122033;--muted:#64748b;--brand:#173b72;--accent:#2d7ff9;--danger:#b42318;--line:#e4eaf2}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+    button,input{font:inherit}.hidden{display:none!important}
+    .app{min-height:100vh}.top{background:linear-gradient(135deg,#102d58,#1c4e91);color:#fff;padding:18px 20px}
+    .topbar{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
+    .brand{font-weight:800;letter-spacing:.08em}.user{font-size:13px;opacity:.9}
+    .shell{max-width:1100px;margin:24px auto;padding:0 16px}
+    .login{max-width:420px;margin:8vh auto;background:var(--card);padding:28px;border-radius:20px;box-shadow:0 14px 45px #183b6518}
+    h1,h2,h3{margin-top:0}.login p,.muted{color:var(--muted)}
+    label{display:block;font-size:13px;font-weight:700;margin:15px 0 7px}input{width:100%;padding:13px 14px;border:1px solid #cfd8e3;border-radius:10px;outline:none}input:focus{border-color:var(--accent);box-shadow:0 0 0 3px #2d7ff91c}
+    .btn{border:0;border-radius:10px;padding:12px 16px;font-weight:750;cursor:pointer}.primary{background:var(--accent);color:#fff}.secondary{background:#eef3f9;color:var(--ink)}.danger{background:#fff0ef;color:var(--danger)}
+    .grid{display:grid;grid-template-columns:1.4fr .9fr;gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 6px 25px #173b720b}
+    .balance{font-size:38px;font-weight:850;margin:8px 0}.account{color:var(--muted);font-size:13px}
+    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
+    .tx{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}.tx:last-child{border-bottom:0}.tx small{color:var(--muted)}
+    .pill{font-size:12px;padding:5px 8px;border-radius:999px;background:#edf7ef;color:#26713b}.demo{background:#fff8e7;border-color:#f1d18a}
+    .modal-backdrop{position:fixed;inset:0;background:#07152599;display:grid;place-items:center;padding:18px}.modal{width:min(520px,100%);background:#fff;border-radius:18px;padding:22px;box-shadow:0 24px 70px #0005}
+    .error-box{background:#fff2f0;border:1px solid #f5c2bd;border-radius:12px;padding:14px;margin:15px 0;color:#7a271a}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:800}
+    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
+    .note{font-size:12px;color:var(--muted);line-height:1.5}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}.topbar{align-items:flex-start}.balance{font-size:32px}}
+  </style>
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <div class="topbar">
+      <div class="brand">CAPE BANK</div>
+      <div id="sessionUser" class="user">Demo session</div>
+    </div>
+  </header>
+
+  <main class="shell">
+    <section id="loginView" class="login">
+      <h1>Welcome back</h1>
+      <p>This is a fictional banking UI prototype for local testing. It does not connect to a bank or move money.</p>
+      <label for="loginName">Username</label>
+      <input id="loginName" value="demo.user" autocomplete="off">
+      <label for="loginPass">Demo password</label>
+      <input id="loginPass" type="password" value="demo123" autocomplete="off">
+      <button class="btn primary" style="width:100%;margin-top:18px" onclick="login()">Sign in to demo</button>
+      <p class="note" style="margin-bottom:0">Use any non-empty values. No credentials are transmitted or stored.</p>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="grid">
+        <div class="card">
+          <div class="account">AVAILABLE BALANCE</div>
+          <div class="balance" id="balance">$12,450.00</div>
+          <div class="account">Demo checking •••• 4821</div>
+          <div class="actions">
+            <button class="btn primary" onclick="openTransfer()">Transfer</button>
+            <button class="btn secondary" onclick="alert('Demo only: no deposit action is connected.')">Deposit</button>
+            <button class="btn secondary" onclick="alert('Demo only: statements are not connected.')">Statements</button>
+          </div>
+        </div>
+        <div class="card">
+          <div class="section-title"><h3>Account status</h3><span class="pill">Active</span></div>
+          <p class="muted">Last sign-in: just now</p>
+          <p class="muted">Security: demo mode</p>
+          <button class="btn secondary" onclick="logout()">Sign out</button>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:18px">
+        <div class="section-title"><h3>Recent activity</h3><span class="muted">Demo data</span></div>
+        <div class="tx"><div><b>Payroll deposit</b><br><small>Sep 15, 2026</small></div><b>+$3,200.00</b></div>
+        <div class="tx"><div><b>Grocery Market</b><br><small>Sep 14, 2026</small></div><b>−$86.42</b></div>
+        <div class="tx"><div><b>Online transfer</b><br><small>Sep 12, 2026</small></div><b>−$450.00</b></div>
+      </div>
+
+      <div class="card demo" style="margin-top:18px">
+        <b>Prototype notice</b>
+        <p class="note">The transfer button intentionally produces a simulated error. This build has no real payment rails, bank API, account database, or transaction execution.</p>
+      </div>
+    </section>
+  </main>
+
+  <div id="transferModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal">
+      <h2>Transfer</h2>
+      <p class="muted">Enter demo recipient and amount. This action will not send money.</p>
+      <label for="recipient">Recipient username</label>
+      <input id="recipient" value="recipient.demo">
+      <label for="amount">Amount (USD)</label>
+      <input id="amount" type="number" min="0.01" step="0.01" value="250.00">
+      <div class="modal-actions">
+        <button class="btn secondary" onclick="closeTransfer()">Cancel</button>
+        <button class="btn primary" onclick="simulateTransfer()">Continue</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="errorModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
+    <div class="modal">
+      <h2>Transfer not completed</h2>
+      <div class="error-box">
+        <div><b>Demo error code:</b> <span class="code">CB-DEMO-403</span></div>
+        <p style="margin-bottom:0">The simulated transfer was blocked. The fields below are intentionally editable for UI/testing purposes only.</p>
+      </div>
+      <div class="row">
+        <div><label for="errorRecipient">Username</label><input id="errorRecipient"></div>
+        <div><label for="errorAmount">Amount</label><input id="errorAmount" type="number" min="0.01" step="0.01"></div>
+      </div>
+      <p class="note">Editing these values only changes the demo modal. It does not authorize, alter, or execute a financial transaction.</p>
+      <div class="modal-actions">
+        <button class="btn secondary" onclick="closeError()">Close</button>
+        <button class="btn danger" onclick="closeError()">Dismiss error</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+
+  function login(){
+    const name = $('loginName').value.trim();
+    if(!name){ alert('Enter a demo username.'); return; }
+    $('sessionUser').textContent = 'Signed in as ' + name;
+    $('loginView').classList.add('hidden');
+    $('dashboard').classList.remove('hidden');
+  }
+  function logout(){
+    $('dashboard').classList.add('hidden');
+    $('loginView').classList.remove('hidden');
+  }
+  function openTransfer(){ $('transferModal').classList.remove('hidden'); }
+  function closeTransfer(){ $('transferModal').classList.add('hidden'); }
+  function simulateTransfer(){
+    const recipient = $('recipient').value.trim() || 'recipient.demo';
+    const amount = $('amount').value || '0.00';
+    closeTransfer();
+    $('errorRecipient').value = recipient;
+    $('errorAmount').value = amount;
+    $('errorModal').classList.remove('hidden');
+  }
+  function closeError(){ $('errorModal').classList.add('hidden'); }
+
+  document.addEventListener('keydown', e => {
+    if(e.key === 'Escape'){ closeTransfer(); closeError(); }
+  });
+</script>
+</body>
+</html>
