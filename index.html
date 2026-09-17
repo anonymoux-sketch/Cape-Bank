@@ -1,152 +1,86 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>CAPE BANK — Demo</title>
-  <style>
-    :root{--bg:#f4f7fb;--card:#fff;--ink:#122033;--muted:#64748b;--brand:#173b72;--accent:#2d7ff9;--danger:#b42318;--line:#e4eaf2}
-    *{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
-    button,input{font:inherit}.hidden{display:none!important}
-    .app{min-height:100vh}.top{background:linear-gradient(135deg,#102d58,#1c4e91);color:#fff;padding:18px 20px}
-    .topbar{max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{font-weight:800;letter-spacing:.08em}.user{font-size:13px;opacity:.9}
-    .shell{max-width:1100px;margin:24px auto;padding:0 16px}
-    .login{max-width:420px;margin:8vh auto;background:var(--card);padding:28px;border-radius:20px;box-shadow:0 14px 45px #183b6518}
-    h1,h2,h3{margin-top:0}.login p,.muted{color:var(--muted)}
-    label{display:block;font-size:13px;font-weight:700;margin:15px 0 7px}input{width:100%;padding:13px 14px;border:1px solid #cfd8e3;border-radius:10px;outline:none}input:focus{border-color:var(--accent);box-shadow:0 0 0 3px #2d7ff91c}
-    .btn{border:0;border-radius:10px;padding:12px 16px;font-weight:750;cursor:pointer}.primary{background:var(--accent);color:#fff}.secondary{background:#eef3f9;color:var(--ink)}.danger{background:#fff0ef;color:var(--danger)}
-    .grid{display:grid;grid-template-columns:1.4fr .9fr;gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 6px 25px #173b720b}
-    .balance{font-size:38px;font-weight:850;margin:8px 0}.account{color:var(--muted);font-size:13px}
-    .actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}.section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
-    .tx{display:flex;justify-content:space-between;padding:13px 0;border-bottom:1px solid var(--line)}.tx:last-child{border-bottom:0}.tx small{color:var(--muted)}
-    .pill{font-size:12px;padding:5px 8px;border-radius:999px;background:#edf7ef;color:#26713b}.demo{background:#fff8e7;border-color:#f1d18a}
-    .modal-backdrop{position:fixed;inset:0;background:#07152599;display:grid;place-items:center;padding:18px}.modal{width:min(520px,100%);background:#fff;border-radius:18px;padding:22px;box-shadow:0 24px 70px #0005}
-    .error-box{background:#fff2f0;border:1px solid #f5c2bd;border-radius:12px;padding:14px;margin:15px 0;color:#7a271a}.code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-weight:800}
-    .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}
-    .note{font-size:12px;color:var(--muted);line-height:1.5}
-    @media(max-width:760px){.grid{grid-template-columns:1fr}.topbar{align-items:flex-start}.balance{font-size:32px}}
-  </style>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CAPE BANK — Demo</title>
+<style>
+:root{--navy:#102d58;--blue:#287cf0;--bg:#f4f7fb;--card:#fff;--ink:#152238;--muted:#66758a;--line:#dfe6ef;--red:#b42318;--green:#18794e}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:var(--bg);color:var(--ink)}
+button,input{font:inherit}button{cursor:pointer}.hidden{display:none!important}.top{background:linear-gradient(135deg,#0e2850,#1e5598);color:#fff}.topbar{max-width:1100px;margin:auto;padding:17px 18px;display:flex;align-items:center;justify-content:space-between}.brand{font-weight:900;letter-spacing:.11em}.session{font-size:13px;opacity:.9}
+.shell{max-width:1100px;margin:auto;padding:24px 16px}.landing{min-height:calc(100vh - 70px);display:grid;place-items:center}.hero{max-width:720px;text-align:center}.hero h1{font-size:clamp(38px,7vw,66px);margin:0 0 12px}.hero p{color:var(--muted);font-size:18px;line-height:1.6}.actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:25px}
+.btn{border:0;border-radius:11px;padding:12px 18px;font-weight:800}.primary{background:var(--blue);color:#fff}.secondary{background:#eaf0f7;color:var(--ink)}.danger{background:#fff0ef;color:var(--red)}
+.auth{width:min(460px,100%);margin:7vh auto;background:var(--card);padding:26px;border-radius:20px;box-shadow:0 15px 50px #173b7215}.auth h2{margin-top:0}.muted{color:var(--muted)}label{display:block;font-size:13px;font-weight:800;margin:15px 0 7px}input{width:100%;padding:13px 14px;border:1px solid #cdd7e3;border-radius:10px;outline:none;background:#fff}input:focus{border-color:var(--blue);box-shadow:0 0 0 3px #287cf01b}.error{color:var(--red);font-size:13px;margin-top:10px}.success{color:var(--green);font-size:13px;margin-top:10px}
+.grid{display:grid;grid-template-columns:1.35fr .85fr;gap:18px}.card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;box-shadow:0 6px 25px #173b7209}.label{font-size:12px;color:var(--muted);font-weight:800;letter-spacing:.05em}.balance{font-size:42px;font-weight:900;margin:7px 0}.account{font-size:13px;color:var(--muted)}.row-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:18px}.status{display:flex;justify-content:space-between}.pill{background:#eaf8ef;color:#18794e;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800}.tx{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid var(--line)}.tx:last-child{border-bottom:0}.tx small{color:var(--muted)}.notice{background:#fff8e6;border-color:#eed18a;font-size:13px;line-height:1.5}
+.modal-bg{position:fixed;inset:0;background:#06152899;display:grid;place-items:center;padding:18px}.modal{width:min(540px,100%);background:#fff;border-radius:18px;padding:23px;box-shadow:0 25px 80px #0005}.modal-actions{display:flex;justify-content:flex-end;gap:9px;margin-top:18px}.errorbox{background:#fff2f0;border:1px solid #f0bcb6;border-radius:12px;padding:14px;color:#7a271a}.code{font-family:monospace;font-weight:900}.twocol{display:grid;grid-template-columns:1fr 1fr;gap:12px}.fine{font-size:12px;color:var(--muted);line-height:1.5}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.balance{font-size:34px}.twocol{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
-<div class="app">
-  <header class="top">
-    <div class="topbar">
-      <div class="brand">CAPE BANK</div>
-      <div id="sessionUser" class="user">Demo session</div>
-    </div>
-  </header>
+<header class="top"><div class="topbar"><div class="brand">CAPE BANK</div><div id="session" class="session"></div></div></header>
+<main class="shell">
 
-  <main class="shell">
-    <section id="loginView" class="login">
-      <h1>Welcome back</h1>
-      <p>This is a fictional banking UI prototype for local testing. It does not connect to a bank or move money.</p>
-      <label for="loginName">Username</label>
-      <input id="loginName" value="demo.user" autocomplete="off">
-      <label for="loginPass">Demo password</label>
-      <input id="loginPass" type="password" value="demo123" autocomplete="off">
-      <button class="btn primary" style="width:100%;margin-top:18px" onclick="login()">Sign in to demo</button>
-      <p class="note" style="margin-bottom:0">Use any non-empty values. No credentials are transmitted or stored.</p>
-    </section>
+<section id="landing" class="landing"><div class="hero">
+<h1>CAPE BANK</h1>
+<p>A responsive banking interface prototype that runs directly from <b>index.html</b> with VS Code Live Server or GitHub Pages.</p>
+<div class="actions"><button class="btn primary" onclick="show('login')">Sign in</button><button class="btn secondary" onclick="show('signup')">Create account</button></div>
+</div></section>
 
-    <section id="dashboard" class="hidden">
-      <div class="grid">
-        <div class="card">
-          <div class="account">AVAILABLE BALANCE</div>
-          <div class="balance" id="balance">$12,450.00</div>
-          <div class="account">Demo checking •••• 4821</div>
-          <div class="actions">
-            <button class="btn primary" onclick="openTransfer()">Transfer</button>
-            <button class="btn secondary" onclick="alert('Demo only: no deposit action is connected.')">Deposit</button>
-            <button class="btn secondary" onclick="alert('Demo only: statements are not connected.')">Statements</button>
-          </div>
-        </div>
-        <div class="card">
-          <div class="section-title"><h3>Account status</h3><span class="pill">Active</span></div>
-          <p class="muted">Last sign-in: just now</p>
-          <p class="muted">Security: demo mode</p>
-          <button class="btn secondary" onclick="logout()">Sign out</button>
-        </div>
-      </div>
+<section id="login" class="auth hidden"><h2>Sign in</h2><p class="muted">Use an account created on this browser.</p>
+<form onsubmit="login(event)"><label>Username</label><input id="loginUser" autocomplete="username" required>
+<label>Password</label><input id="loginPass" type="password" autocomplete="current-password" required><div id="loginMsg"></div>
+<button class="btn primary" style="width:100%;margin-top:18px">Sign in</button></form>
+<p class="fine">Prototype authentication is local to this browser and does not contact a bank server.</p>
+<button class="btn secondary" onclick="show('landing')">Back</button></section>
 
-      <div class="card" style="margin-top:18px">
-        <div class="section-title"><h3>Recent activity</h3><span class="muted">Demo data</span></div>
-        <div class="tx"><div><b>Payroll deposit</b><br><small>Sep 15, 2026</small></div><b>+$3,200.00</b></div>
-        <div class="tx"><div><b>Grocery Market</b><br><small>Sep 14, 2026</small></div><b>−$86.42</b></div>
-        <div class="tx"><div><b>Online transfer</b><br><small>Sep 12, 2026</small></div><b>−$450.00</b></div>
-      </div>
+<section id="signup" class="auth hidden"><h2>Create your demo account</h2>
+<form onsubmit="signup(event)">
+<div class="twocol"><div><label>First name</label><input id="first" required></div><div><label>Last name</label><input id="last" required></div></div>
+<label>Email</label><input id="email" type="email" required autocomplete="email">
+<label>Username</label><input id="newUser" minlength="3" required autocomplete="username">
+<label>Password</label><input id="newPass" type="password" minlength="8" required autocomplete="new-password">
+<label>Confirm password</label><input id="confirm" type="password" minlength="8" required autocomplete="new-password">
+<div id="signupMsg"></div><button class="btn primary" style="width:100%;margin-top:18px">Create account</button></form>
+<p class="fine">Prototype only. Account data is kept locally in this browser; no real bank account is created.</p>
+<button class="btn secondary" onclick="show('landing')">Back</button></section>
 
-      <div class="card demo" style="margin-top:18px">
-        <b>Prototype notice</b>
-        <p class="note">The transfer button intentionally produces a simulated error. This build has no real payment rails, bank API, account database, or transaction execution.</p>
-      </div>
-    </section>
-  </main>
+<section id="dashboard" class="hidden">
+<div class="grid"><div class="card"><div class="label">AVAILABLE BALANCE</div><div id="balance" class="balance">$12,450.00</div><div class="account">Demo checking •••• 4821</div>
+<div class="row-actions"><button class="btn primary" onclick="openTransfer()">Transfer</button><button class="btn secondary" onclick="alert('Deposit is disabled in this prototype.')">Deposit</button><button class="btn secondary" onclick="alert('Statements are demo-only.')">Statements</button></div></div>
+<div class="card"><div class="status"><h3 style="margin:0">Account</h3><span class="pill">Active</span></div><p id="welcome" class="muted"></p><p id="emailView" class="muted"></p><button class="btn secondary" onclick="logout()">Sign out</button></div></div>
+<div class="card" style="margin-top:18px"><div class="status"><h3>Recent activity</h3><span class="muted">Demo data</span></div>
+<div class="tx"><div><b>Payroll deposit</b><br><small>Sep 15, 2026</small></div><b>+$3,200.00</b></div>
+<div class="tx"><div><b>Grocery Market</b><br><small>Sep 14, 2026</small></div><b>−$86.42</b></div>
+<div class="tx"><div><b>Online transfer</b><br><small>Sep 12, 2026</small></div><b>−$450.00</b></div></div>
+<div class="card notice" style="margin-top:18px"><b>Prototype notice</b><br>Transfer execution is intentionally disabled; no real funds or financial accounts are connected.</div>
+</section>
+</main>
 
-  <div id="transferModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
-    <div class="modal">
-      <h2>Transfer</h2>
-      <p class="muted">Enter demo recipient and amount. This action will not send money.</p>
-      <label for="recipient">Recipient username</label>
-      <input id="recipient" value="recipient.demo">
-      <label for="amount">Amount (USD)</label>
-      <input id="amount" type="number" min="0.01" step="0.01" value="250.00">
-      <div class="modal-actions">
-        <button class="btn secondary" onclick="closeTransfer()">Cancel</button>
-        <button class="btn primary" onclick="simulateTransfer()">Continue</button>
-      </div>
-    </div>
-  </div>
+<div id="transfer" class="modal-bg hidden"><div class="modal"><h2>Transfer</h2><p class="muted">Demo transfer form</p>
+<label>Recipient username</label><input id="recipient" value="recipient.demo">
+<label>Amount (USD)</label><input id="amount" type="number" min=".01" step=".01" value="250.00">
+<div class="modal-actions"><button class="btn secondary" onclick="closeTransfer()">Cancel</button><button class="btn primary" onclick="simulateTransfer()">Continue</button></div></div></div>
 
-  <div id="errorModal" class="modal-backdrop hidden" role="dialog" aria-modal="true">
-    <div class="modal">
-      <h2>Transfer not completed</h2>
-      <div class="error-box">
-        <div><b>Demo error code:</b> <span class="code">CB-DEMO-403</span></div>
-        <p style="margin-bottom:0">The simulated transfer was blocked. The fields below are intentionally editable for UI/testing purposes only.</p>
-      </div>
-      <div class="row">
-        <div><label for="errorRecipient">Username</label><input id="errorRecipient"></div>
-        <div><label for="errorAmount">Amount</label><input id="errorAmount" type="number" min="0.01" step="0.01"></div>
-      </div>
-      <p class="note">Editing these values only changes the demo modal. It does not authorize, alter, or execute a financial transaction.</p>
-      <div class="modal-actions">
-        <button class="btn secondary" onclick="closeError()">Close</button>
-        <button class="btn danger" onclick="closeError()">Dismiss error</button>
-      </div>
-    </div>
-  </div>
-</div>
+<div id="transferError" class="modal-bg hidden"><div class="modal"><h2>Transfer not completed</h2>
+<div class="errorbox"><b>Demo error code: <span class="code">CB-DEMO-403</span></b><p style="margin-bottom:0">The simulated transfer was blocked. The fields below remain editable for interface testing.</p></div>
+<div class="twocol"><div><label>Username</label><input id="errorRecipient"></div><div><label>Amount</label><input id="errorAmount" type="number" min=".01" step=".01"></div></div>
+<p class="fine">Editing these values only changes this demo screen and cannot execute a transaction.</p>
+<div class="modal-actions"><button class="btn danger" onclick="closeError()">Dismiss</button></div></div></div>
 
 <script>
-  const $ = id => document.getElementById(id);
-
-  function login(){
-    const name = $('loginName').value.trim();
-    if(!name){ alert('Enter a demo username.'); return; }
-    $('sessionUser').textContent = 'Signed in as ' + name;
-    $('loginView').classList.add('hidden');
-    $('dashboard').classList.remove('hidden');
-  }
-  function logout(){
-    $('dashboard').classList.add('hidden');
-    $('loginView').classList.remove('hidden');
-  }
-  function openTransfer(){ $('transferModal').classList.remove('hidden'); }
-  function closeTransfer(){ $('transferModal').classList.add('hidden'); }
-  function simulateTransfer(){
-    const recipient = $('recipient').value.trim() || 'recipient.demo';
-    const amount = $('amount').value || '0.00';
-    closeTransfer();
-    $('errorRecipient').value = recipient;
-    $('errorAmount').value = amount;
-    $('errorModal').classList.remove('hidden');
-  }
-  function closeError(){ $('errorModal').classList.add('hidden'); }
-
-  document.addEventListener('keydown', e => {
-    if(e.key === 'Escape'){ closeTransfer(); closeError(); }
-  });
+const $=id=>document.getElementById(id),views=['landing','login','signup','dashboard'];
+function show(n){views.forEach(v=>$(v).classList.add('hidden'));$(n).classList.remove('hidden');scrollTo(0,0);$('loginMsg').innerHTML='';$('signupMsg').innerHTML=''}
+function msg(id,t,ok=false){$(id).innerHTML='<div class="'+(ok?'success':'error')+'">'+t+'</div>'}
+function users(){try{return JSON.parse(localStorage.getItem('capeBankUsers')||'{}')}catch(e){return{}}}
+function save(u){localStorage.setItem('capeBankUsers',JSON.stringify(u))}
+async function hash(s){let b=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));return[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,'0')).join('')}
+async function signup(e){e.preventDefault();let u=$('newUser').value.trim().toLowerCase(),p=$('newPass').value,c=$('confirm').value,x=users();if(p!==c)return msg('signupMsg','Passwords do not match.');if(p.length<8)return msg('signupMsg','Password must contain at least 8 characters.');if(x[u])return msg('signupMsg','That username already exists on this browser.');x[u]={first:$('first').value.trim(),last:$('last').value.trim(),email:$('email').value.trim(),hash:await hash(p)};save(x);msg('signupMsg','Account created. You can now sign in.',true);setTimeout(()=>show('login'),700)}
+async function login(e){e.preventDefault();let u=$('loginUser').value.trim().toLowerCase(),p=$('loginPass').value,x=users();if(!x[u])return msg('loginMsg','Account not found. Create an account first.');if(x[u].hash!==await hash(p))return msg('loginMsg','Incorrect username or password.');sessionStorage.setItem('capeBankSession',u);dashboard(u)}
+function dashboard(u){let x=users()[u];$('session').textContent='Signed in as '+u;$('welcome').textContent='Welcome, '+x.first+' '+x.last;$('emailView').textContent=x.email;show('dashboard')}
+function logout(){sessionStorage.removeItem('capeBankSession');$('session').textContent='';show('landing')}
+function openTransfer(){$('transfer').classList.remove('hidden')}function closeTransfer(){$('transfer').classList.add('hidden')}
+function simulateTransfer(){closeTransfer();$('errorRecipient').value=$('recipient').value.trim();$('errorAmount').value=$('amount').value;$('transferError').classList.remove('hidden')}
+function closeError(){$('transferError').classList.add('hidden')}
+addEventListener('keydown',e=>{if(e.key==='Escape'){closeTransfer();closeError()}})
+addEventListener('load',()=>{let u=sessionStorage.getItem('capeBankSession');u&&users()[u]?dashboard(u):show('landing')})
 </script>
-</body>
-</html>
+</body></html>
