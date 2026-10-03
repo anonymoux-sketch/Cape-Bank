@@ -1,0 +1,1 @@
+const express=require('express');const {auth}=require('../lib/middleware');const router=express.Router();router.get('/',auth,(req,res)=>res.json({bills:[{payee:'Electric Company',due:'Oct 08',amount:125},{payee:'Internet Provider',due:'Oct 12',amount:79.99}]}));module.exports=router;

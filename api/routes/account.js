@@ -1,0 +1,1 @@
+const express=require('express');const {auth}=require('../lib/middleware');const router=express.Router();router.get('/summary',auth,(req,res)=>res.json({account:req.user.account,transactions:req.user.transactions}));module.exports=router;

@@ -1,0 +1,1 @@
+const express=require('express');const {auth}=require('../lib/middleware');const router=express.Router();router.get('/',auth,(req,res)=>res.json({notifications:[{title:'New sign-in detected',time:'Just now',status:'New'},{title:'Monthly statement is ready',time:'Today',status:'Read'},{title:'Security settings reviewed',time:'Today',status:'Read'}]}));module.exports=router;

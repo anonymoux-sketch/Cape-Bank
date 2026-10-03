@@ -1,0 +1,9 @@
+{
+  "name": "CAPE BANK Mobile Prototype",
+  "short_name": "CAPE BANK",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#f4f7fb",
+  "theme_color": "#102d58",
+  "description": "Fictional CAPE BANK mobile banking interface prototype."
+}
