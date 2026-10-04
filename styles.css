@@ -57,3 +57,16 @@ html[data-theme="dark"] .notice{background:#332b18;border-color:#66532a;color:#f
 html[data-theme="dark"] .success-box{background:#132a20;border-color:#245b43;color:#9de0bb}
 html[data-theme="dark"] .error-box{background:#321b19;border-color:#6c3028;color:#ffaaa0}
 html[data-theme="dark"] .link-btn:hover{background:#18283c}
+
+/* Sidebar-only light/dark sliding switch */
+.theme-menu-row{display:flex;align-items:center;gap:10px;margin:4px 0;padding:10px 13px;border-radius:12px;color:#26344a;font-weight:700}
+.theme-menu-label{flex:1}
+.theme-switch{display:inline-flex;align-items:center;cursor:pointer;position:relative;flex:0 0 auto}
+.theme-switch input{position:absolute;opacity:0;width:1px;height:1px}
+.theme-slider{width:46px;height:26px;border-radius:999px;background:#d7dee8;border:1px solid #c4ccd7;padding:2px;display:flex;align-items:center;transition:background .2s ease,border-color .2s ease}
+.theme-knob{width:20px;height:20px;border-radius:50%;background:#fff;box-shadow:0 1px 4px rgba(0,0,0,.22);transform:translateX(0);transition:transform .2s ease}
+.theme-switch input:checked + .theme-slider{background:#18202a;border-color:#3b4653}
+.theme-switch input:checked + .theme-slider .theme-knob{transform:translateX(20px);background:#f5f7fa}
+.theme-switch:focus-within .theme-slider{box-shadow:0 0 0 3px #2d7ff91a}
+html[data-theme="dark"] .theme-menu-row{color:#dce3ec}
+html[data-theme="dark"] .theme-slider{background:#3a4653;border-color:#4b5867}
