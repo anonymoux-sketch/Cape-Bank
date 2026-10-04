@@ -4,7 +4,17 @@
   "private": true,
   "description": "CAPE BANK fictional mobile banking prototype with a Node API for cross-device account login testing.",
   "main": "api/server.js",
-  "scripts": { "start": "node api/server.js", "dev": "node api/server.js" },
-  "engines": { "node": ">=18" },
-  "dependencies": { "cors": "^2.8.5", "express": "^4.21.2", "jsonwebtoken": "^9.0.2" }
+  "scripts": {
+    "start": "node api/server.js",
+    "dev": "node api/server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.16.3"
+  }
 }
