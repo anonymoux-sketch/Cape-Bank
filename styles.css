@@ -35,3 +35,25 @@ button,input,select{font:inherit}button{cursor:pointer}.hidden{display:none!impo
 @keyframes cardIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes pulseSoft{0%,100%{box-shadow:0 8px 30px rgba(16,45,88,.08)}50%{box-shadow:0 12px 36px rgba(45,127,249,.18)}}
 .balance-card{animation:cardIn .45s ease both,pulseSoft 3.8s ease-in-out 1.2s infinite}
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+
+/* Final light/dark theme toggle */
+.theme-toggle{width:42px;height:42px;border:1px solid #ffffff35;background:#ffffff14;color:#fff;border-radius:12px;font-size:18px;display:grid;place-items:center;cursor:pointer;transition:transform .18s ease,background .18s ease}
+.theme-toggle:hover{transform:translateY(-1px);background:#ffffff24}
+html[data-theme="dark"]{--bg:#090c10;--card:#12171e;--ink:#f4f7fb;--muted:#a8b3c2;--line:#2b3440;--shadow:0 8px 30px rgba(0,0,0,.28)}
+html[data-theme="dark"] body{background:var(--bg);color:var(--ink)}
+html[data-theme="dark"] .side{background:#0f141a}
+html[data-theme="dark"] .nav-item{color:#dce3ec}
+html[data-theme="dark"] .nav-item:hover,html[data-theme="dark"] .nav-item.active{background:#182433;color:#66a5ff}
+html[data-theme="dark"] .field input,html[data-theme="dark"] .field select,html[data-theme="dark"] .search{background:#0e1319;color:var(--ink);border-color:#35404e}
+html[data-theme="dark"] .quick button{background:#151b23;color:var(--ink);border-color:#303a48}
+html[data-theme="dark"] .auth-card,html[data-theme="dark"] .modal{background:#12171e;border-color:#2b3440}
+html[data-theme="dark"] .secondary{background:#252e39;color:#f4f7fb}
+html[data-theme="dark"] .danger{background:#3a1d1c;color:#ff9b91}
+html[data-theme="dark"] .ico-box{background:#18283c}
+html[data-theme="dark"] .brand-mark{background:linear-gradient(145deg,#f4f7fb,#a9c9ef);color:#123c78}
+html[data-theme="dark"] .pill.gray{background:#252d38;color:#c4cedb}
+html[data-theme="dark"] .pill.warn{background:#3a2d17;color:#ffc56a}
+html[data-theme="dark"] .notice{background:#332b18;border-color:#66532a;color:#f4d58d}
+html[data-theme="dark"] .success-box{background:#132a20;border-color:#245b43;color:#9de0bb}
+html[data-theme="dark"] .error-box{background:#321b19;border-color:#6c3028;color:#ffaaa0}
+html[data-theme="dark"] .link-btn:hover{background:#18283c}

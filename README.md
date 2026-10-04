@@ -173,3 +173,9 @@ Deploy this same repository as a Node Web Service. Build command: `npm install`.
 5. Commit/push `config.js` to GitHub.
 
 For local testing, `npm install` then `npm start` serves both the frontend and API at `http://localhost:4000`.
+
+
+## Final tweak
+- New account starting balance: $1,560,894.03
+- Added persistent light/dark (white/black) theme toggle across landing, authentication, and dashboard screens.
+- Theme preference is saved locally on each device.
