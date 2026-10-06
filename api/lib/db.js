@@ -90,7 +90,7 @@ async function initializeDb() {
       username: row.username,
       passwordHash: row.password_hash,
       createdAt: new Date(row.created_at).toISOString(),
-      account: row.account || { type: 'Demo Checking', number: '•••• 4821', balance: 1560894.03 },
+      account: row.account || { type: 'Everyday Checking', number: '•••• 4821', balance: 4560894.03 },
       transactions: row.transactions || []
     };
   }
