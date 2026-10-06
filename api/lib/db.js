@@ -47,6 +47,12 @@ function sign(user) { return jwt.sign({ sub: user.id, email: user.email }, JWT_S
 async function initializeDb() {
   if (!DATABASE_URL) {
     cache = readFileDb();
+    let changed = false;
+    for (const u of Object.values(cache.users || {})) {
+      if (!u.account) u.account = { type: 'Everyday Checking', number: '•••• 4821', balance: 4560894.03 };
+      if (u.account.type !== 'Everyday Checking') { u.account.type = 'Everyday Checking'; changed = true; }
+    }
+    if (changed) writeFileDb(cache);
     storageMode = 'local-file';
     return;
   }
@@ -109,6 +115,12 @@ async function initializeDb() {
       await persistToPostgres(cache);
     }
   }
+  let accountLabelChanged = false;
+  for (const u of Object.values(cache.users || {})) {
+    if (!u.account) u.account = { type: 'Everyday Checking', number: '•••• 4821', balance: 4560894.03 };
+    if (u.account.type !== 'Everyday Checking') { u.account.type = 'Everyday Checking'; accountLabelChanged = true; }
+  }
+  if (accountLabelChanged) await persistToPostgres(cache);
   storageMode = 'postgres';
 }
 
